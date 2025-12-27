@@ -13,8 +13,11 @@ func _on_pane_changed() -> void:
 
 func _process(delta: float) -> void: if Global.pane_moving:
 	
+	
 	var curr = global_position.x
 	var goal = Global.current_pane.global_position.x
+	
+	if abs(curr - goal) <= 0.5: progress = 1.0
 	
 	# Lerp to the goal based on a curved rep of the progress.
 	global_position.x = lerp(curr, goal, ease(progress, -2.5))
