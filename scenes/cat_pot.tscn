@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://dypl75soflbh8"]
+
+[ext_resource type="Texture2D" uid="uid://di1i85lj3vsl4" path="res://assets/textures/pot.png" id="1_bls8m"]
+[ext_resource type="Script" uid="uid://b3enaxefcgu7x" path="res://scripts/cat_pot.gd" id="1_w6w6m"]
+[ext_resource type="Script" uid="uid://dbkh0nnilhyn3" path="res://scripts/cat_data.gd" id="2_4megu"]
+[ext_resource type="Texture2D" uid="uid://bdkgvgp78g7re" path="res://assets/textures/test_pallete.png" id="2_ijak8"]
+
+[sub_resource type="Resource" id="Resource_ijak8"]
+script = ExtResource("2_4megu")
+pallete = ExtResource("2_ijak8")
+metadata/_custom_type_script = "uid://dbkh0nnilhyn3"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4megu"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6w6m"]
+atlas = ExtResource("1_bls8m")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4megu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6w6m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CatPot" type="Area2D"]
+script = ExtResource("1_w6w6m")
+growth_stage = 4
+seed = SubResource("Resource_ijak8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4megu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4megu")
+
+[node name="HarvestParticles" type="GPUParticles2D" parent="."]
+visible = false

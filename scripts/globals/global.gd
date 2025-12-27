@@ -1,5 +1,7 @@
 extends Node
 
+## Panes
+
 # Signals for when to move the current pane Left and Right.
 signal pane_left
 signal pane_right
@@ -8,7 +10,6 @@ signal pane_changed
 
 var current_pane:Node2D # The pane the player is currently in.
 var pane_moving := false # Whether the camera is currently moving from one pane to another.
-
 
 @onready var panes:Array[Node2D] = get_panes()
 func get_panes() -> Array[Node2D]:
@@ -37,3 +38,12 @@ func pane_change(by:int):
 	if current_index < len(panes) and current_index >= 0: 
 		current_pane = panes[current_index]
 		pane_changed.emit()
+
+## Day Cycle
+signal new_day
+
+var day = 1
+
+func next_day():
+	day += 1
+	new_day.emit(day)
