@@ -30,8 +30,7 @@ animations = [{
 
 [node name="CatPot" type="Area2D"]
 script = ExtResource("1_w6w6m")
-growth_stage = 4
-seed = SubResource("Resource_ijak8")
+cat_seed = SubResource("Resource_ijak8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4megu")

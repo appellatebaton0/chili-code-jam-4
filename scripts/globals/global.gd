@@ -46,4 +46,14 @@ var day = 1
 
 func next_day():
 	day += 1
-	new_day.emit(day)
+	new_day.emit()
+
+## Money
+
+signal coins_changed
+
+var coins := 0
+
+func pay(amount:int): 
+	coins += amount
+	coins_changed.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gf71gxlcvi7q"]
+[gd_scene load_steps=17 format=3 uid="uid://gf71gxlcvi7q"]
 
 [ext_resource type="Script" uid="uid://bgu8rf21rje21" path="res://scripts/cat.gd" id="1_7vi38"]
 [ext_resource type="Texture2D" uid="uid://bdkgvgp78g7re" path="res://assets/textures/test_pallete.png" id="1_t8pth"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://0tl2m6wgtkmq" path="res://assets/textures/cat.png" id="3_cxap7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tol8a"]
+size = Vector2(18, 14)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o55mh"]
 shader_parameter/color_count = 7
@@ -15,9 +16,25 @@ script = ExtResource("2_7vi38")
 palette = ExtResource("1_t8pth")
 metadata/_custom_type_script = "uid://vrs1twpulcy0"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ic5u8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vi38"]
+atlas = ExtResource("3_cxap7")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxap7"]
 atlas = ExtResource("3_cxap7")
 region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tol8a"]
+atlas = ExtResource("3_cxap7")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o55mh"]
+atlas = ExtResource("3_cxap7")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic5u8"]
+atlas = ExtResource("3_cxap7")
+region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8px16"]
 atlas = ExtResource("3_cxap7")
@@ -25,24 +42,46 @@ region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kedyd"]
 atlas = ExtResource("3_cxap7")
-region = Rect2(24, 0, 24, 24)
+region = Rect2(120, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v4p53"]
 atlas = ExtResource("3_cxap7")
-region = Rect2(48, 0, 24, 24)
+region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32af4"]
 atlas = ExtResource("3_cxap7")
-region = Rect2(72, 0, 24, 24)
+region = Rect2(96, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sjxxq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7vi38")
+}],
+"loop": true,
+"name": &"held",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 7.0,
+"texture": SubResource("AtlasTexture_cxap7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tol8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o55mh")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ic5u8")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"midair",
 "speed": 5.0
 }, {
 "frames": [{
@@ -64,10 +103,12 @@ animations = [{
 }]
 
 [node name="Cat" type="CharacterBody2D"]
+collision_layer = 2
 input_pickable = true
 script = ExtResource("1_7vi38")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_tol8a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -75,6 +116,4 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_o55mh")
 position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_sjxxq")
-animation = &"walking"
-frame = 1
-frame_progress = 0.384591
+animation = &"held"

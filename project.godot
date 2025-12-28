@@ -25,6 +25,7 @@ Mouse="*res://scripts/globals/mouse.gd"
 window/size/viewport_width=288
 window/size/viewport_height=162
 window/stretch/mode="canvas_items"
+mouse_cursor/tooltip_position_offset=Vector2(2, 2)
 
 [editor_plugins]
 
@@ -33,3 +34,8 @@ enabled=PackedStringArray("res://addons/PaletteSwapShader/plugin.cfg", "res://ad
 [global_group]
 
 Pane=""
+
+[layer_names]
+
+2d_physics/layer_1="Environment"
+2d_physics/layer_2="Cat"
