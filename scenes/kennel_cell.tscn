@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx8siglpi7go6"]
+
+[ext_resource type="Script" uid="uid://klwmnpxgxdpb" path="res://scripts/kennel_cell.gd" id="1_nlo1a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_556qs"]
+size = Vector2(24, 24)
+
+[sub_resource type="Gradient" id="Gradient_556qs"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nlo1a"]
+gradient = SubResource("Gradient_556qs")
+width = 24
+height = 24
+
+[node name="KennelCell" type="Area2D" groups=["Kennel"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_nlo1a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_556qs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_nlo1a")

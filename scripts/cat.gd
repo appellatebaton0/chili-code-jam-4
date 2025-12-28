@@ -40,6 +40,8 @@ func _physics_process(delta: float) -> void:
 		STATE.WALKING:
 			anim.play("walking", walk_speed / 15)
 			
+			if is_on_wall(): facing_left = get_wall_normal().x < 0
+			
 			velocity.x = (-1 if facing_left else 1) * walk_speed
 		
 			if state_time <= 0: change_state(STATE.IDLE)

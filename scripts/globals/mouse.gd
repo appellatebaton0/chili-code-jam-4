@@ -29,11 +29,20 @@ func pick_up(cat:Cat) -> bool:
 func put_down() -> bool:
 	if !holding: return false
 	
-	holding.velocity = last_relative
-	holding.change_state(holding.STATE.MIDAIR)
+	var in_kennel:KennelCell = null
 	
-	holding.z_index -= 1
-	holding = null
+	for kennel in get_tree().get_nodes_in_group("Kennel"): if kennel is KennelCell:
+		if kennel.mouse_over: 
+			in_kennel = kennel
+			break
+	
+	if in_kennel: in_kennel._pick_up(holding)
+	else:
+		holding.velocity = last_relative * 2.5
+		holding.change_state(holding.STATE.MIDAIR)
+		
+		holding.z_index -= 1
+		holding = null
 	
 	return true
 

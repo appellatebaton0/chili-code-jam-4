@@ -1,12 +1,17 @@
-[gd_scene load_steps=21 format=3 uid="uid://c3anty621fnsp"]
+[gd_scene load_steps=31 format=3 uid="uid://c3anty621fnsp"]
 
 [ext_resource type="Script" uid="uid://c1br7q0wcb3kd" path="res://scripts/camera.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://cdcn6er34elng" path="res://scripts/area_activator.gd" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://c7n2wbe2y8prm" path="res://assets/textures/placeholder.png" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://d386c2mb6q48g" path="res://scripts/anim_button.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://vrs1twpulcy0" path="res://addons/PaletteSwapShader/PaletteMaterial.gd" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://qr7ihr8cdrd8" path="res://scripts/next_day.gd" id="6_choun"]
+[ext_resource type="Script" uid="uid://bm6cn4kmt55bv" path="res://scripts/kennel.gd" id="6_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://dypl75soflbh8" path="res://scenes/cat_pot.tscn" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://bu5j7bch8ffty" path="res://scripts/coin_label.gd" id="6_tipki"]
+[ext_resource type="Shader" uid="uid://ddmabbq2kjdoc" path="res://shaders/fade.gdshader" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://cx8siglpi7go6" path="res://scenes/kennel_cell.tscn" id="7_ya4ey"]
+[ext_resource type="Script" uid="uid://bg7imvv6spac1" path="res://scripts/day_phaser.gd" id="8_85g3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tefeu"]
 script = ExtResource("4_tbgi4")
@@ -20,6 +25,9 @@ size = Vector2(22, 165.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(9, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trceg"]
+size = Vector2(288, 10)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
 bg_color = Color(0, 0, 0.38039216, 0.5921569)
@@ -46,6 +54,18 @@ gradient = SubResource("Gradient_tefeu")
 width = 32
 height = 8
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85g3d"]
+shader = ExtResource("7_tipki")
+shader_parameter/threshold = -1.0
+shader_parameter/intensity = 0.65
+
+[sub_resource type="Gradient" id="Gradient_choun"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ya4ey"]
+gradient = SubResource("Gradient_choun")
+
 [sub_resource type="Gradient" id="Gradient_sugp2"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jyhfs"]
@@ -68,6 +88,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -162)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InputStopper:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_tbgi4"]
 length = 0.001
@@ -83,10 +115,135 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DayPhaser:material:shader_parameter/threshold")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DayPhaser/Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 162)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DayPhaser/OldDay:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 162)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DayPhaser/NewDay:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(286, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("InputStopper:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tipki"]
+resource_name = "new_day"
+length = 5.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DayPhaser:material:shader_parameter/threshold")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 4.2333336, 5.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.0, 1.0, 1.0, -1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DayPhaser/Label:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.2333333, 1.2533333, 2.2666667, 2.7, 3.3666668, 3.8, 3.94, 3.9833333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 162), Vector2(0, 162), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 162)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DayPhaser/OldDay:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.2333333, 1.2533333, 1.7733333, 2.0033333, 2.1433334, 2.2433333, 3.2333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 162), Vector2(0, 162), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(-288, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DayPhaser/NewDay:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.2333333, 3.2333333, 3.2666667, 3.5083332, 3.7683332, 3.898333, 3.9833333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(288, 0), Vector2(288, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 162)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("InputStopper:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tefeu"]
 _data = {
 &"RESET": SubResource("Animation_tbgi4"),
+&"new_day": SubResource("Animation_tipki"),
 &"start": SubResource("Animation_jyhfs")
 }
 
@@ -159,7 +316,56 @@ shape = SubResource("RectangleShape2D_tbgi4")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
 
+[node name="Kennel" type="Area2D" parent="Camera2D"]
+position = Vector2(0, 81)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("6_eb6dy")
+
+[node name="KennelCell" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
+position = Vector2(-124, -12)
+
+[node name="KennelCell2" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
+position = Vector2(-95, -12)
+
+[node name="KennelCell3" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
+position = Vector2(-65, -12)
+
+[node name="KennelCell4" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
+position = Vector2(-33, -12)
+
+[node name="KennelCell5" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
+position = Vector2(-1, -12)
+
+[node name="KennelCell6" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
+position = Vector2(31, -12)
+
+[node name="KennelCell7" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
+position = Vector2(63, -12)
+
+[node name="KennelCell8" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
+position = Vector2(95, -12)
+
+[node name="KennelCell10" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
+position = Vector2(127, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Kennel"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_trceg")
+
+[node name="Button" type="Button" parent="." node_paths=PackedStringArray("day_phaser")]
+offset_left = 57.0
+offset_top = 76.0
+offset_right = 65.0
+offset_bottom = 84.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 3
+text = "Next Day"
+script = ExtResource("6_choun")
+day_phaser = NodePath("../CanvasLayer/UI/DayPhaser")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -173,11 +379,8 @@ theme = SubResource("Theme_tipki")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 37.0
+offset_bottom = 13.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 
@@ -203,7 +406,62 @@ script = ExtResource("6_tipki")
 
 [node name="GotCoins" type="AudioStreamPlayer" parent="CanvasLayer/UI/MarginContainer/TextureRect/Label"]
 
+[node name="DayPhaser" type="TextureRect" parent="CanvasLayer/UI"]
+material = SubResource("ShaderMaterial_85g3d")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_ya4ey")
+script = ExtResource("8_85g3d")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/DayPhaser"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 162.0
+offset_bottom = 162.00006
+grow_horizontal = 2
+grow_vertical = 2
+text = "DAY
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OldDay" type="Label" parent="CanvasLayer/UI/DayPhaser"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 162.0
+offset_bottom = 162.00006
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewDay" type="Label" parent="CanvasLayer/UI/DayPhaser"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 286.0
+offset_right = 286.00024
+offset_bottom = 6.1035156e-05
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="StartScreen" type="TextureRect" parent="CanvasLayer/UI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,6 +480,15 @@ focus_mode = 0
 text = "START"
 script = ExtResource("4_jyhfs")
 anim_name = "start"
+
+[node name="InputStopper" type="Control" parent="CanvasLayer/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI"]
 libraries = {
