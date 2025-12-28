@@ -1,5 +1,7 @@
 class_name KennelCell extends Area2D
 
+@onready var anim := $AnimatedSprite2D
+
 @export var held:CatData
 
 var mouse_over
@@ -11,6 +13,10 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 		var new = held.create(get_parent().get_parent())
 
 		Mouse.pick_up(new)
+		new.state = new.STATE.HELD
+		
+		anim.play("empty")
+		held = null
 
 func _pick_up(cat:Cat):
 	held = cat.data
@@ -19,3 +25,4 @@ func _pick_up(cat:Cat):
 	material.palette = held.pallete
 	
 	cat.queue_free()
+	anim.play("full")

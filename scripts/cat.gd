@@ -30,7 +30,8 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor(): 
 		velocity += get_gravity() * delta * 0.9
-		state = STATE.MIDAIR
+		state = STATE.MIDAIR if Mouse.holding != self else STATE.HELD
+		
 	
 	match state:
 		STATE.IDLE:

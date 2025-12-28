@@ -30,7 +30,7 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 		if growth_stage == STAGES.RIPE:
 			# Make a new cat.
 			
-			var new = cat_seed.create(get_parent())
+			var new = cat_seed.duplicate().create(get_parent())
 			new.global_position = event.global_position
 			
 			growth_stage = 0 as STAGES

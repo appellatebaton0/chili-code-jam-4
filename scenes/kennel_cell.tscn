@@ -1,16 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx8siglpi7go6"]
+[gd_scene load_steps=7 format=3 uid="uid://cx8siglpi7go6"]
 
 [ext_resource type="Script" uid="uid://klwmnpxgxdpb" path="res://scripts/kennel_cell.gd" id="1_nlo1a"]
+[ext_resource type="Texture2D" uid="uid://gh7wn6nl5bxl" path="res://assets/textures/kennel.png" id="2_2x58o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_556qs"]
 size = Vector2(24, 24)
 
-[sub_resource type="Gradient" id="Gradient_556qs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_borcw"]
+atlas = ExtResource("2_2x58o")
+region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nlo1a"]
-gradient = SubResource("Gradient_556qs")
-width = 24
-height = 24
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x58o"]
+atlas = ExtResource("2_2x58o")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ji62"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_borcw")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2x58o")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]
 
 [node name="KennelCell" type="Area2D" groups=["Kennel"]]
 collision_layer = 4
@@ -20,5 +41,9 @@ script = ExtResource("1_nlo1a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_556qs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_nlo1a")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_0ji62")
+animation = &"full"
+autoplay = "empty"
