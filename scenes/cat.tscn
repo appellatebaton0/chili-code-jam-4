@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://gf71gxlcvi7q"]
+[gd_scene load_steps=22 format=3 uid="uid://gf71gxlcvi7q"]
 
 [ext_resource type="Script" uid="uid://bgu8rf21rje21" path="res://scripts/cat.gd" id="1_7vi38"]
 [ext_resource type="Texture2D" uid="uid://bdkgvgp78g7re" path="res://assets/textures/test_pallete.png" id="1_t8pth"]
 [ext_resource type="Script" uid="uid://vrs1twpulcy0" path="res://addons/PaletteSwapShader/PaletteMaterial.gd" id="2_7vi38"]
 [ext_resource type="Texture2D" uid="uid://0tl2m6wgtkmq" path="res://assets/textures/cat.png" id="3_cxap7"]
+[ext_resource type="FontFile" uid="uid://bksgsn2hpi6es" path="res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf" id="5_cxap7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tol8a"]
 size = Vector2(18, 14)
@@ -102,6 +103,30 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tol8a"]
+bg_color = Color(0.3696, 0.71456, 0.84, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.046633877, 0.29577658, 0.42205828, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vi38"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.057600003, 0.33919993, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxap7"]
+bg_color = Color(0.1494, 0.64850664, 0.83, 1)
+
+[sub_resource type="Theme" id="Theme_tol8a"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("5_cxap7")
+Panel/styles/panel = SubResource("StyleBoxFlat_tol8a")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_7vi38")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_cxap7")
+
 [node name="Cat" type="CharacterBody2D"]
 collision_layer = 2
 input_pickable = true
@@ -116,4 +141,79 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_o55mh")
 position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_sjxxq")
-animation = &"held"
+animation = &"idle"
+
+[node name="Info" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+theme = SubResource("Theme_tol8a")
+
+[node name="Panel" type="Panel" parent="Info"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -23.0
+offset_right = 33.0
+offset_bottom = -5.0
+
+[node name="Name" type="Label" parent="Info/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 50.0
+offset_bottom = 10.0
+scale = Vector2(0.5, 0.5)
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 8
+text = "Ginger"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Info/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 9.0
+offset_bottom = 10.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 5
+text = "Mood "
+vertical_alignment = 1
+
+[node name="Mood" type="ProgressBar" parent="Info/Panel"]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 0
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 26.0
+offset_bottom = 9.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+value = 50.0
+show_percentage = false
+
+[node name="Label2" type="Label" parent="Info/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 13.0
+offset_right = 9.0
+offset_bottom = 16.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 5
+text = "Clean"
+vertical_alignment = 1
+
+[node name="Cleanliness" type="ProgressBar" parent="Info/Panel"]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 0
+offset_left = 12.0
+offset_top = 13.0
+offset_right = 26.0
+offset_bottom = 15.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+value = 50.0
+show_percentage = false
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
