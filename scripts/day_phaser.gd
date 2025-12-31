@@ -19,6 +19,7 @@ func _process(_delta: float) -> void:
 	if anim.current_animation: if anim.current_animation_position >= 3.25 and not made_switch: 
 		Global.next_day()
 		made_switch = true
+		$DayIncrement.play()
 
 func next_day() -> void:
 	anim.play("new_day")

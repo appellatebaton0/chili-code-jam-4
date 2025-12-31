@@ -29,9 +29,9 @@ func pick_up(cat:Cat) -> bool:
 func put_down() -> bool:
 	if !holding: return false
 	
-	var in_kennel:KennelCell = null
+	var in_kennel = null
 	
-	for kennel in get_tree().get_nodes_in_group("Kennel"): if kennel is KennelCell:
+	for kennel in get_tree().get_nodes_in_group("Kennel"):
 		if kennel.mouse_over: 
 			in_kennel = kennel
 			break

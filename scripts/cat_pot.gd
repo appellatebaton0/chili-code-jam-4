@@ -1,5 +1,11 @@
 class_name CatPot extends Area2D
 
+@export var bought := false
+@export var cost := 20
+
+@onready var anim := $AnimatedSprite2D
+@export var colliders:Array[CollisionShape2D]
+
 enum STAGES {
 	SEEDED,
 	SAPLING,
@@ -16,16 +22,30 @@ var growth_progress := 0.0
 
 @onready var particles := $HarvestParticles
 
-func _ready() -> void: Global.new_day.connect(_on_new_day)
+func _ready() -> void:
+	Global.new_day.connect(_on_new_day)
+	for collider in colliders:
+		collider.disabled = not bought
+	anim.play("unbought")
+	
+	material = PaletteMaterial.new()
+	material.palette = cat_seed.pallete
 
 func _on_new_day() -> void:
+	
+	if not bought: return
+	
 	growth_progress += growth_per_day
 	
 	while growth_progress >= 1.0:
 		growth_stage = min((growth_stage + 1) as STAGES, STAGES.RIPE)
 		growth_progress -= 1.0
+	
+	anim.play(str(growth_stage))
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	if not bought: return
+	
 	if event is InputEventMouseButton: if event.pressed:
 		if growth_stage == STAGES.RIPE:
 			# Make a new cat.
@@ -33,11 +53,12 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 			var new = cat_seed.duplicate().create(get_parent())
 			new.global_position = event.global_position
 			new.data.name = get_new_name()
-			print("named new ", new.data.name)
 			
 			growth_stage = 0 as STAGES
 			
 			particles.emitting = true
+			
+			anim.play(str(growth_stage))
 
 func get_new_name() -> String:
 	return [
@@ -135,3 +156,15 @@ func get_new_name() -> String:
 		"Willow",
 		"Sunset",
 		].pick_random()
+
+
+func _on_button_pressed() -> void: if Global.coins >= cost:
+	Global.pay(-cost)
+	
+	$Buy.hide()
+	bought = true
+	
+	for collider in colliders:
+		collider.disabled = not bought
+	
+	anim.play(str(growth_stage))

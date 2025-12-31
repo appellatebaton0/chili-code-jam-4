@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqx2whxtxu280"]
+[gd_scene load_steps=6 format=3 uid="uid://bqx2whxtxu280"]
 
 [ext_resource type="Script" uid="uid://b5sas7qqjqllr" path="res://scripts/bathtub.gd" id="1_20l5n"]
 [ext_resource type="Texture2D" uid="uid://dpm2lcjg6phap" path="res://assets/textures/bathtub.png" id="1_v8squ"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20l5n"]
-size = Vector2(96, 11)
+size = Vector2(82, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yw60"]
+size = Vector2(96, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stv8t"]
+size = Vector2(9, 4)
 
 [node name="Bathtub" type="Area2D"]
 collision_mask = 2
@@ -15,14 +21,26 @@ texture_filter = 1
 texture = ExtResource("1_v8squ")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7.5)
+position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_20l5n")
 
 [node name="Floatbox" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floatbox"]
-position = Vector2(0, -0.5)
-polygon = PackedVector2Array(44, -12.5, 48, -12.5, 48, 1, -48, 1, -48, -8.5, -44, -8.5, -44, -2, 44, -2)
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="Floatbox"]
+shape = SubResource("RectangleShape2D_1yw60")
+one_way_collision = true
+
+[node name="CollisionPolygon2D2" type="CollisionShape2D" parent="Floatbox"]
+position = Vector2(-46, -6.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_stv8t")
+one_way_collision = true
+
+[node name="CollisionPolygon2D3" type="CollisionShape2D" parent="Floatbox"]
+position = Vector2(46, -6)
+rotation = 4.712389
+shape = SubResource("RectangleShape2D_stv8t")
+one_way_collision = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

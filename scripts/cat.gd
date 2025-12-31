@@ -18,11 +18,10 @@ var mouse_over := false
 @onready var clean := $Info/Panel/Cleanliness
 
 func _ready() -> void:
-	if data == null: queue_free()
+	if data == null: data = CatData.new()
 	
 	material = PaletteMaterial.new()
-	material.palette = data.pallete
-	
+	material.set_palette(data.pallete)
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton: if event.pressed:
@@ -38,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	
 	match state:
 		STATE.IDLE:
-			anim.play("idle")
+			anim.play("idle", randf_range(0.0, 1.0))
 			
 			if state_time <= 0: change_state(STATE.WALKING)
 		STATE.WALKING:

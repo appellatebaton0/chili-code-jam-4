@@ -52,7 +52,7 @@ func next_day():
 
 signal coins_changed
 
-var coins := 0
+var coins := 20
 
 func pay(amount:int): 
 	coins += amount

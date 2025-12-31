@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dypl75soflbh8"]
+[gd_scene load_steps=24 format=3 uid="uid://dypl75soflbh8"]
 
 [ext_resource type="Texture2D" uid="uid://di1i85lj3vsl4" path="res://assets/textures/pot.png" id="1_bls8m"]
 [ext_resource type="Script" uid="uid://b3enaxefcgu7x" path="res://scripts/cat_pot.gd" id="1_w6w6m"]
 [ext_resource type="Script" uid="uid://dbkh0nnilhyn3" path="res://scripts/cat_data.gd" id="2_4megu"]
-[ext_resource type="Texture2D" uid="uid://bdkgvgp78g7re" path="res://assets/textures/test_pallete.png" id="2_ijak8"]
+[ext_resource type="Texture2D" uid="uid://bk22hoi8w6r3f" path="res://assets/textures/palletes/green.png" id="2_ijak8"]
+[ext_resource type="FontFile" uid="uid://bksgsn2hpi6es" path="res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf" id="5_1b8ru"]
 
 [sub_resource type="Resource" id="Resource_ijak8"]
 script = ExtResource("2_4megu")
@@ -11,33 +12,193 @@ pallete = ExtResource("2_ijak8")
 metadata/_custom_type_script = "uid://dbkh0nnilhyn3"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4megu"]
-size = Vector2(16, 16)
+size = Vector2(14, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w6w6m"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bebw4"]
+size = Vector2(16, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej3ei"]
 atlas = ExtResource("1_bls8m")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xas28"]
+atlas = ExtResource("1_bls8m")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0tqx"]
+atlas = ExtResource("1_bls8m")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f11kc"]
+atlas = ExtResource("1_bls8m")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kik5c"]
+atlas = ExtResource("1_bls8m")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rof18"]
+atlas = ExtResource("1_bls8m")
+region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4megu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w6w6m")
+"texture": SubResource("AtlasTexture_ej3ei")
 }],
 "loop": true,
-"name": &"default",
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xas28")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0tqx")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f11kc")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kik5c")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rof18")
+}],
+"loop": true,
+"name": &"unbought",
 "speed": 5.0
 }]
 
-[node name="CatPot" type="Area2D"]
+[sub_resource type="Gradient" id="Gradient_ijak8"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.54, 0.2052, 0.2052, 0.6666667)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1b8ru"]
+gradient = SubResource("Gradient_ijak8")
+width = 1
+height = 1
+
+[sub_resource type="Curve" id="Curve_bebw4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.045584045, 1), 0.0, 0.0, 0, 0, Vector2(0.903134, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ej3ei"]
+curve = SubResource("Curve_bebw4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xas28"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 0.5, 0)
+emission_shape = 3
+emission_box_extents = Vector3(4.5, 0, 0)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -22.62
+radial_accel_max = -18.000002
+scale_curve = SubResource("CurveTexture_ej3ei")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iapim"]
+bg_color = Color(0.7882353, 0.7372549, 0.44313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhpin"]
+bg_color = Color(0.57, 0.524685, 0.26790002, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8bvw"]
+bg_color = Color(0.83, 0.7802, 0.498, 1)
+
+[node name="CatPot" type="Area2D" node_paths=PackedStringArray("colliders")]
 script = ExtResource("1_w6w6m")
+colliders = [NodePath("Harvest"), NodePath("StaticBody2D/Platform")]
 cat_seed = SubResource("Resource_ijak8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Harvest" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_4megu")
+debug_color = Color(0, 0.7, 0.12833337, 0.41960785)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="Platform" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_bebw4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_4megu")
+animation = &"0"
 
 [node name="HarvestParticles" type="GPUParticles2D" parent="."]
-visible = false
+emitting = false
+amount = 16
+texture = SubResource("GradientTexture2D_1b8ru")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_xas28")
+
+[node name="Buy" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -3.0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="Label" type="Label" parent="Buy"]
+layout_mode = 0
+offset_left = 2.0000002
+offset_top = 2.0000002
+offset_right = 68.66667
+offset_bottom = 46.444443
+scale = Vector2(0.18, 0.18)
+theme_override_colors/font_color = Color(0.56, 0.45117334, 0.2632, 1)
+theme_override_fonts/font = ExtResource("5_1b8ru")
+theme_override_font_sizes/font_size = 23
+text = "BUY
+POT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Buy"]
+layout_mode = 0
+offset_left = 1.9999996
+offset_top = 11.0
+offset_right = 66.86487
+offset_bottom = 43.43243
+scale = Vector2(0.185, 0.185)
+focus_mode = 0
+theme_override_colors/font_color = Color(0.56078434, 0.4509804, 0.2627451, 1)
+theme_override_fonts/font = ExtResource("5_1b8ru")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_iapim")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hhpin")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l8bvw")
+text = "20k"
+
+[connection signal="pressed" from="Buy/Button" to="." method="_on_button_pressed"]
