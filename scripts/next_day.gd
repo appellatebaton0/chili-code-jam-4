@@ -1,4 +1,4 @@
-class_name NextDay extends Button
+class_name NextDay extends BaseButton
 
 @export var day_phaser:DayPhaser
 

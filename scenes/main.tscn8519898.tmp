@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c3anty621fnsp"]
+[gd_scene load_steps=35 format=3 uid="uid://c3anty621fnsp"]
 
 [ext_resource type="Script" uid="uid://c1br7q0wcb3kd" path="res://scripts/camera.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://bwnufjnbnikh4" path="res://assets/textures/background.png" id="1_trceg"]
@@ -15,7 +15,6 @@
 [ext_resource type="AudioStream" uid="uid://csl20c0r3foqg" path="res://assets/sfx/tabchangecageopen.mp3" id="8_muem4"]
 [ext_resource type="PackedScene" uid="uid://bqx2whxtxu280" path="res://scenes/bathtub.tscn" id="9_a8y0u"]
 [ext_resource type="FontFile" uid="uid://bksgsn2hpi6es" path="res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf" id="11_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://bp1x8bnr4yd44" path="res://assets/textures/clock.png" id="11_yc10j"]
 [ext_resource type="Script" uid="uid://b5cwrwo5lywb2" path="res://scripts/cat_saver.gd" id="13_trceg"]
 [ext_resource type="AudioStream" uid="uid://ddksvdj1ttdxg" path="res://assets/sfx/daychange.mp3" id="15_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://chjjs1iit53oe" path="res://assets/textures/start.png" id="17_dp3eg"]
@@ -267,67 +266,11 @@ position = Vector2(720, 81)
 texture = ExtResource("1_trceg")
 
 [node name="CatPot" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(27, 30)
+position = Vector2(78, 103)
 growth_stage = 4
 
 [node name="CatPot2" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(59, 30)
-growth_stage = 4
-
-[node name="CatPot3" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(91, 30)
-growth_stage = 4
-
-[node name="CatPot4" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(123, 30)
-growth_stage = 4
-
-[node name="CatPot5" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(155, 30)
-growth_stage = 4
-
-[node name="CatPot6" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(187, 30)
-growth_stage = 4
-
-[node name="CatPot7" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(219, 30)
-growth_stage = 4
-
-[node name="CatPot8" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(251, 30)
-growth_stage = 4
-
-[node name="CatPot9" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(27, 73)
-growth_stage = 4
-
-[node name="CatPot10" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(59, 73)
-growth_stage = 4
-
-[node name="CatPot11" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(91, 73)
-growth_stage = 4
-
-[node name="CatPot12" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(123, 73)
-growth_stage = 4
-
-[node name="CatPot13" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(155, 73)
-growth_stage = 4
-
-[node name="CatPot14" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(187, 73)
-growth_stage = 4
-
-[node name="CatPot15" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(219, 73)
-growth_stage = 4
-
-[node name="CatPot16" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(251, 73)
+position = Vector2(103, 103)
 growth_stage = 4
 
 [node name="Environment" type="StaticBody2D" parent="."]
@@ -417,14 +360,14 @@ position = Vector2(95, 12)
 [node name="KennelCell10" parent="Camera2D/Kennel" instance=ExtResource("7_ya4ey")]
 position = Vector2(127, 12)
 
-[node name="Button" type="TextureButton" parent="." node_paths=PackedStringArray("day_phaser")]
-texture_filter = 1
-offset_left = 310.0
-offset_top = 40.0
-offset_right = 332.0
-offset_bottom = 56.0
+[node name="Button" type="Button" parent="." node_paths=PackedStringArray("day_phaser")]
+offset_left = 57.0
+offset_top = 76.0
+offset_right = 65.0
+offset_bottom = 84.0
 focus_mode = 0
-texture_normal = ExtResource("11_yc10j")
+theme_override_font_sizes/font_size = 3
+text = "Next Day"
 script = ExtResource("6_choun")
 day_phaser = NodePath("../CanvasLayer/UI/DayPhaser")
 
