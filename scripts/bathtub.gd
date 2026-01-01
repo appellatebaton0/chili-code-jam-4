@@ -21,10 +21,12 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Cat:
 		currently_cleaning.append(body)
+		body.cleaning.emitting = true
 		
 		body.z_index -= 1
 func _on_body_exited(body: Node2D) -> void:
 	if body is Cat:
 		currently_cleaning.erase(body)
+		body.cleaning.emitting = false
 		
 		body.z_index += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c3anty621fnsp"]
+[gd_scene load_steps=38 format=3 uid="uid://c3anty621fnsp"]
 
 [ext_resource type="Script" uid="uid://c1br7q0wcb3kd" path="res://scripts/camera.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://bwnufjnbnikh4" path="res://assets/textures/background.png" id="1_trceg"]
@@ -52,12 +52,13 @@ Label/fonts/font = ExtResource("11_jkv2x")
 TooltipLabel/font_sizes/font_size = 3
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_o6xl0")
 
-[sub_resource type="Gradient" id="Gradient_tefeu"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_o6xl0"]
-gradient = SubResource("Gradient_tefeu")
-width = 32
-height = 8
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6deb"]
+bg_color = Color(0.71127325, 0.5827589, 0.27619058, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.40083334, 0.15, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_85g3d"]
 shader = ExtResource("7_tipki")
@@ -70,6 +71,15 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ya4ey"]
 gradient = SubResource("Gradient_choun")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc10j"]
+bg_color = Color(0.13725491, 0.33333334, 0.16078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jscy8"]
+bg_color = Color(0.1066, 0.26, 0.12449669, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pm3ni"]
+bg_color = Color(0.15990001, 0.39, 0.18674503, 1)
 
 [sub_resource type="Animation" id="Animation_tbgi4"]
 length = 0.001
@@ -421,12 +431,23 @@ position = Vector2(127, 12)
 texture_filter = 1
 offset_left = 310.0
 offset_top = 40.0
-offset_right = 332.0
-offset_bottom = 56.0
+offset_right = 326.0
+offset_bottom = 60.0
 focus_mode = 0
 texture_normal = ExtResource("11_yc10j")
 script = ExtResource("6_choun")
 day_phaser = NodePath("../CanvasLayer/UI/DayPhaser")
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 0
+offset_top = 15.999999
+offset_right = 106.66675
+offset_bottom = 42.666687
+scale = Vector2(0.15, 0.15)
+theme_override_fonts/font = ExtResource("11_jkv2x")
+text = "-> Sleep  "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -447,21 +468,22 @@ offset_bottom = 13.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/MarginContainer"]
+[node name="TextureRect" type="Panel" parent="CanvasLayer/UI/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = SubResource("GradientTexture2D_o6xl0")
+theme_override_styles/panel = SubResource("StyleBoxFlat_y6deb")
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/MarginContainer/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 287.99997
+offset_bottom = 71.999985
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.1, 0.1)
 mouse_filter = 1
-theme_override_font_sizes/font_size = 4
+theme_override_font_sizes/font_size = 29
 text = "asd"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -527,6 +549,7 @@ vertical_alignment = 1
 stream = ExtResource("15_jbj1t")
 
 [node name="StartScreen" type="TextureRect" parent="CanvasLayer/UI"]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -537,27 +560,34 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("17_dp3eg")
 
-[node name="Button" type="Button" parent="CanvasLayer/UI/StartScreen"]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 45.0
-offset_right = 166.0
-offset_bottom = 97.0
-focus_mode = 0
-text = "START"
-script = ExtResource("4_jyhfs")
-anim_name = "start"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/UI/StartScreen"]
 stream = ExtResource("15_jbj1t")
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/StartScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+
+[CHILI GAME JAM]"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/StartScreen"]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 31.0
-offset_right = 70.0
-offset_bottom = 46.0
-text = "[TITLE]"
+offset_left = 79.0
+offset_top = 73.0
+offset_right = 200.0
+offset_bottom = 101.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_yc10j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jscy8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm3ni")
+text = "START"
+script = ExtResource("4_jyhfs")
+anim_name = "start"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/UI/StartScreen"]
 layout_mode = 1
@@ -570,7 +600,7 @@ offset_bottom = 181.0
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(254, 32)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Cat" parent="CanvasLayer/UI/StartScreen/SubViewportContainer/SubViewport" instance=ExtResource("19_0ld40")]
 position = Vector2(26, 18)

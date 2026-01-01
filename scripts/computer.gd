@@ -69,3 +69,4 @@ func _on_sell_pressed() -> void: if can_sell:
 	held = null
 
 	sold.emit()
+	$GPUParticles2D.restart()

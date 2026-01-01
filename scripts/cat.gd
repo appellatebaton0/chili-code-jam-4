@@ -3,6 +3,7 @@ class_name Cat extends CharacterBody2D
 var data:CatData
 
 @onready var anim := $AnimatedSprite2D
+@onready var cleaning := $Cleaning
 
 enum STATE {HELD, MIDAIR, IDLE, WALKING}
 var state := STATE.IDLE
@@ -70,7 +71,7 @@ func _physics_process(delta: float) -> void:
 		clean.value = data.cleanliness
 		
 		$Info/Panel/Name.text = data.name
-
+	
 func change_state(to:STATE):
 	state = to
 	

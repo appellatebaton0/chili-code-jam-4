@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://gf71gxlcvi7q"]
+[gd_scene load_steps=28 format=3 uid="uid://gf71gxlcvi7q"]
 
 [ext_resource type="Script" uid="uid://bgu8rf21rje21" path="res://scripts/cat.gd" id="1_7vi38"]
 [ext_resource type="Texture2D" uid="uid://0tl2m6wgtkmq" path="res://assets/textures/cat.png" id="3_cxap7"]
@@ -145,6 +145,32 @@ Panel/styles/panel = SubResource("StyleBoxFlat_tol8a")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_7vi38")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_cxap7")
 
+[sub_resource type="Gradient" id="Gradient_t8pth"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.30359998, 0.92, 0.92, 0.78431374)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7vi38"]
+gradient = SubResource("Gradient_t8pth")
+width = 1
+height = 1
+
+[sub_resource type="Curve" id="Curve_cxap7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.07977208, 1), 0.0, 0.0, 0, 0, Vector2(0.6467237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_tol8a"]
+curve = SubResource("Curve_cxap7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o55mh"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(9, 7, 0)
+spread = 180.0
+gravity = Vector3(0, 6, 0)
+radial_accel_min = 2.9999976
+radial_accel_max = 2.9999976
+scale_curve = SubResource("CurveTexture_tol8a")
+
 [node name="Cat" type="CharacterBody2D"]
 collision_layer = 2
 input_pickable = true
@@ -235,6 +261,14 @@ size_flags_horizontal = 10
 size_flags_vertical = 4
 value = 50.0
 show_percentage = false
+
+[node name="Cleaning" type="GPUParticles2D" parent="."]
+position = Vector2(0, 3)
+emitting = false
+amount = 32
+texture = SubResource("GradientTexture2D_7vi38")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_o55mh")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
