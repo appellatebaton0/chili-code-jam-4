@@ -105,7 +105,6 @@ func change_state(to:STATE):
 			
 			current_yarn = find_yarn()
 			
-			print(current_yarn)
 			if not current_yarn: change_state(STATE.WALKING)
 			else: current_yarn.targeted_by = self
 
@@ -124,7 +123,5 @@ func find_yarn() -> Yarn:
 		if not yarn.targeted_by and abs(yarn.global_position.x - global_position.x) < min_distance:
 			response = yarn
 			min_distance = abs(yarn.global_position.x - global_position.x)
-	
-	print(min_distance)
 	
 	return response

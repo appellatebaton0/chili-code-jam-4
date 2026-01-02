@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/PaletteSwapShader/plugin.cfg", "res://ad
 Pane=""
 Kennel=""
 Yarn=""
+Pot=""
 
 [layer_names]
 
