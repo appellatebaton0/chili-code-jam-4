@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg4aj0wn6r3mh"]
+[gd_scene load_steps=6 format=3 uid="uid://cg4aj0wn6r3mh"]
 
 [ext_resource type="Script" uid="uid://18pe5o1lbgt3" path="res://scripts/yarn.gd" id="1_gs3jm"]
 [ext_resource type="Texture2D" uid="uid://cfm1shfemfawf" path="res://assets/textures/yarn.png" id="2_on054"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gs3jm"]
+bounce = 0.3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8f0kc"]
 size = Vector2(8, 8)
@@ -11,6 +14,10 @@ size = Vector2(8.1, 8.1)
 
 [node name="Yarn" type="RigidBody2D" groups=["Yarn"]]
 collision_layer = 8
+input_pickable = true
+mass = 0.2
+physics_material_override = SubResource("PhysicsMaterial_gs3jm")
+gravity_scale = 0.3
 lock_rotation = true
 max_contacts_reported = 100
 script = ExtResource("1_gs3jm")
@@ -18,17 +25,22 @@ script = ExtResource("1_gs3jm")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_on054")
+hframes = 5
+frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8f0kc")
 debug_color = Color(0, 0.5950001, 0.7, 0.14901961)
 
 [node name="HitCollider" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 64
 collision_mask = 2
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
 shape = SubResource("RectangleShape2D_gs3jm")
 debug_color = Color(0, 0.5950001, 0.7, 0.15294118)
 
-[connection signal="body_entered" from="HitCollider" to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

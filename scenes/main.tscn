@@ -347,6 +347,9 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment"]
 polygon = PackedVector2Array(0, 162, 864, 162, 864, -155, 997, -155, 997, 258, -128, 258, -128, -235, 0, -235)
 
+[node name="Computer" parent="." instance=ExtResource("20_gqmmt")]
+position = Vector2(368, 122)
+
 [node name="Bathtub" parent="." instance=ExtResource("9_a8y0u")]
 position = Vector2(504, 138)
 
@@ -451,7 +454,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Yarn" parent="." instance=ExtResource("14_jscy8")]
-position = Vector2(94, 129)
+position = Vector2(406, 115)
+
+[node name="Yarn2" parent="." instance=ExtResource("14_jscy8")]
+position = Vector2(259, 148)
+
+[node name="Yarn3" parent="." instance=ExtResource("14_jscy8")]
+position = Vector2(164, 142)
+
+[node name="Yarn4" parent="." instance=ExtResource("14_jscy8")]
+position = Vector2(218, 135)
+
+[node name="Yarn5" parent="." instance=ExtResource("14_jscy8")]
+position = Vector2(119, 148)
+
+[node name="Yarn6" parent="." instance=ExtResource("14_jscy8")]
+position = Vector2(68, 137)
+
+[node name="Yarn7" parent="." instance=ExtResource("14_jscy8")]
+position = Vector2(29, 149)
+
+[node name="Yarn8" parent="." instance=ExtResource("14_jscy8")]
+position = Vector2(440, 154)
+
+[node name="Yarn9" parent="." instance=ExtResource("14_jscy8")]
+position = Vector2(559, 153)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -653,9 +680,6 @@ grow_vertical = 2
 libraries = {
 &"": SubResource("AnimationLibrary_tefeu")
 }
-
-[node name="Computer" parent="." instance=ExtResource("20_gqmmt")]
-position = Vector2(368, 122)
 
 [connection signal="body_entered" from="CatSaver3000" to="CatSaver3000" method="_on_body_entered"]
 [connection signal="activated" from="Camera2D/LeftArea" to="Camera2D/Entered" method="play"]

@@ -100,12 +100,13 @@ func change_state(to:STATE):
 		STATE.IDLE: state_time = randf_range(1.0, 10.0)
 		STATE.WALKING: state_time = randf_range(1.0, 9.0)
 		STATE.YARN:
+			walk_speed = randf_range(16.0, 32.0)
 			state_time = randf_range(7.0, 15.0)
 			
 			current_yarn = find_yarn()
 			
 			print(current_yarn)
-			if not current_yarn: change_state(STATE.IDLE)
+			if not current_yarn: change_state(STATE.WALKING)
 			else: current_yarn.targeted_by = self
 
 
@@ -115,11 +116,15 @@ func _on_mouse_exited() -> void:  mouse_over = false
 func find_yarn() -> Yarn:
 	
 	var response:Yarn = null
-	var min_distance := INF
+	var min_distance := 1000000.0
 	
 	for yarn in get_tree().get_nodes_in_group("Yarn"): if yarn is Yarn:
-		if not yarn.targeted_by and yarn.global_position.distance_to(global_position) < min_distance:
+		if abs(global_position.y - yarn.global_position.y) > 20: continue
+		
+		if not yarn.targeted_by and abs(yarn.global_position.x - global_position.x) < min_distance:
 			response = yarn
-			min_distance = yarn.global_position.distance_to(global_position) < min_distance
+			min_distance = abs(yarn.global_position.x - global_position.x)
+	
+	print(min_distance)
 	
 	return response
