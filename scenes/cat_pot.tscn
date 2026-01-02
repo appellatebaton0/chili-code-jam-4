@@ -122,15 +122,15 @@ radial_accel_max = -18.000002
 scale_curve = SubResource("CurveTexture_ej3ei")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iapim"]
-bg_color = Color(0.7882353, 0.7372549, 0.44313726, 1)
+bg_color = Color(0.79, 0.73786, 0.4424, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhpin"]
-bg_color = Color(0.57, 0.524685, 0.26790002, 1)
+bg_color = Color(1, 1, 1, 0.1882353)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8bvw"]
-bg_color = Color(0.83, 0.7802, 0.498, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b8ru"]
+bg_color = Color(1, 1, 1, 0.078431375)
 
-[node name="CatPot" type="Area2D" node_paths=PackedStringArray("colliders")]
+[node name="CatPot" type="Area2D" node_paths=PackedStringArray("colliders") groups=["Pot"]]
 script = ExtResource("1_w6w6m")
 colliders = [NodePath("Harvest"), NodePath("StaticBody2D/Platform")]
 cat_seed = SubResource("Resource_ijak8")
@@ -151,7 +151,7 @@ shape = SubResource("RectangleShape2D_bebw4")
 texture_filter = 1
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_4megu")
-animation = &"0"
+animation = &"unbought"
 
 [node name="HarvestParticles" type="GPUParticles2D" parent="."]
 emitting = false
@@ -185,20 +185,31 @@ POT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="Buy"]
+[node name="Button" type="Button" parent="Buy" groups=["Pot"]]
 layout_mode = 0
-offset_left = 1.9999996
-offset_top = 11.0
-offset_right = 66.86487
-offset_bottom = 43.43243
-scale = Vector2(0.185, 0.185)
+offset_right = 145.45453
+offset_bottom = 172.72726
+scale = Vector2(0.11, 0.11)
 focus_mode = 0
-theme_override_colors/font_color = Color(0.56078434, 0.4509804, 0.2627451, 1)
+theme_override_colors/font_color = Color(0.94, 0.9055333, 0.84599996, 1)
 theme_override_fonts/font = ExtResource("5_1b8ru")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_iapim")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hhpin")
-theme_override_styles/hover = SubResource("StyleBoxFlat_l8bvw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1b8ru")
+
+[node name="Label2" type="Label" parent="Buy"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 12.0
+offset_right = 114.111115
+offset_bottom = 56.44445
+scale = Vector2(0.09, 0.09)
+theme_override_colors/font_color = Color(0.56, 0.45117334, 0.2632, 1)
+theme_override_fonts/font = ExtResource("5_1b8ru")
+theme_override_font_sizes/font_size = 23
 text = "20k"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Buy/Button" to="." method="_on_button_pressed"]

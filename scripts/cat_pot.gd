@@ -168,3 +168,11 @@ func _on_button_pressed() -> void: if Global.coins >= cost:
 		collider.disabled = not bought
 	
 	anim.play(str(growth_stage))
+	
+	for pot in get_tree().get_nodes_in_group("Pot"): if pot is CatPot:
+		pot._update_cost_to(int(cost * 1.1))
+
+func _update_cost_to(amount:int):
+	
+	cost = amount
+	$Buy/Label2.text = str(amount) + "k"
