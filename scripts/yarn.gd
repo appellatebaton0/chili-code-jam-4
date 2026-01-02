@@ -14,7 +14,7 @@ func _ready() -> void:
 	$Sprite2D.frame = randi_range(0, 4)
 	
 	for line in get_children(): if line is YarnLine:
-		line.default_color = $Sprite2D.texture.get_image().get_pixel(3 + ($Sprite2D.frame * 8),0)
+		line.default_color = $Sprite2D.texture.get_image().get_pixel(5 + ($Sprite2D.frame * 8),1)
 
 func _physics_process(delta: float) -> void:
 	for body in area.get_overlapping_bodies(): if body == targeted_by:
@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 			hit_time = hit_delay
 	hit_time = move_toward(hit_time, 0.0, delta)
 	
-
+	if Mouse.holding != self and gravity_scale == 0.0: gravity_scale = 0.3
 
 func _on_mouse_entered() -> void: mouse_over = true
 func _on_mouse_exited() -> void:  mouse_over = false

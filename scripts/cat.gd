@@ -94,6 +94,7 @@ func _physics_process(delta: float) -> void:
 		
 			if state_time <= 0: change_state(STATE.IDLE)
 		STATE.MIDAIR:
+			anim.play("midair")
 			if is_on_floor(): change_state(STATE.IDLE)
 		STATE.HELD:
 			anim.play("held")
