@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bksgsn2hpi6es" path="res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf" id="5_cxap7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tol8a"]
-size = Vector2(18, 14)
+size = Vector2(14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vi38"]
 atlas = ExtResource("3_cxap7")
@@ -177,7 +177,7 @@ input_pickable = true
 script = ExtResource("1_7vi38")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(1, 3)
 shape = SubResource("RectangleShape2D_tol8a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -185,10 +185,10 @@ texture_filter = 1
 use_parent_material = true
 position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_sjxxq")
-animation = &"midair"
+animation = &"walking"
+frame_progress = 0.8908032
 
 [node name="Info" type="Control" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 theme = SubResource("Theme_tol8a")

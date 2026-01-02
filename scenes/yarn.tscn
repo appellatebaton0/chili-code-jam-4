@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cg4aj0wn6r3mh"]
+[gd_scene load_steps=7 format=3 uid="uid://cg4aj0wn6r3mh"]
 
 [ext_resource type="Script" uid="uid://18pe5o1lbgt3" path="res://scripts/yarn.gd" id="1_gs3jm"]
 [ext_resource type="Texture2D" uid="uid://cfm1shfemfawf" path="res://assets/textures/yarn.png" id="2_on054"]
+[ext_resource type="Script" uid="uid://blyf7bn7w30fg" path="res://scripts/yarn_line.gd" id="3_on054"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gs3jm"]
 friction = 0.3
@@ -41,6 +42,31 @@ input_pickable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollider"]
 shape = SubResource("RectangleShape2D_gs3jm")
 debug_color = Color(0, 0.5950001, 0.7, 0.15294118)
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+position = Vector2(-2, -2)
+width = 1.0
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("3_on054")
+
+[node name="Line2D2" type="Line2D" parent="."]
+z_index = -1
+position = Vector2(0, 3)
+width = 1.0
+script = ExtResource("3_on054")
+
+[node name="Line2D3" type="Line2D" parent="."]
+z_index = -1
+position = Vector2(2, 0)
+width = 1.0
+script = ExtResource("3_on054")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="input_event" from="." to="." method="_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

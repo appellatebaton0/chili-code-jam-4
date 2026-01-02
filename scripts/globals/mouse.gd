@@ -24,6 +24,7 @@ func pick_up(node:Node2D) -> bool:
 	holding.z_index += 1
 	
 	if node is Cat: node.change_state(node.STATE.HELD)
+	else: node.gravity_scale = 0.0
 	
 	return true
 func put_down() -> bool:
@@ -46,6 +47,7 @@ func put_down() -> bool:
 			holding = null
 	else:
 		holding.apply_impulse(last_relative * 0.5)
+		holding.gravity_scale = 0.3
 		
 		holding.z_index -= 1
 		holding = null

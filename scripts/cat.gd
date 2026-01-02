@@ -26,6 +26,43 @@ func _ready() -> void:
 	
 	material = PaletteMaterial.new()
 	material.set_palette(data.pallete)
+	
+	# Create the theme for the tooltip.
+	var theme := Theme.new()
+	var atlas := data.pallete.get_image()
+	
+	# Labels
+	theme.add_type("Label")
+	theme.set_color("font_color", "Label", atlas.get_pixel(6,1))
+	theme.set_font("font", "Label", load("res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf"))
+	
+	# Panel
+	theme.add_type("Panel")
+	
+	var panel := StyleBoxFlat.new()
+	panel.bg_color = atlas.get_pixel(2,1)
+	
+	panel.border_color = atlas.get_pixel(0,1)
+	panel.border_width_bottom = 1
+	panel.border_width_left = 1
+	panel.border_width_top = 1
+	panel.border_width_right = 1
+	
+	theme.set_stylebox("panel", "Panel", panel)
+	
+	# ProgressBar
+	theme.add_type("ProgressBar")
+	
+	var background := StyleBoxFlat.new()
+	background.bg_color = atlas.get_pixel(1,1)
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = atlas.get_pixel(5,1)
+	
+	theme.set_stylebox("background", "ProgressBar", background)
+	theme.set_stylebox("fill", "ProgressBar", fill)
+	
+	$Info.theme = theme
+	
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton: if event.pressed:
@@ -39,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta * 0.9
 		state = STATE.MIDAIR if Mouse.holding != self else STATE.HELD
 	
-	if state_time <= 0 and data.mood < 90 and can_play: change_state(STATE.YARN)
+	if state_time <= 0 and data.mood < 90 and can_play and state == STATE.IDLE: change_state(STATE.YARN)
 	
 	if randf() >= 0.98: data.mood -= 1
 	

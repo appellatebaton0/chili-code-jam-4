@@ -13,7 +13,7 @@ size = Vector2(96, 4)
 size = Vector2(9, 4)
 
 [node name="Bathtub" type="Area2D"]
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_20l5n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

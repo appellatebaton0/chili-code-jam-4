@@ -1,10 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://dypl75soflbh8"]
+[gd_scene load_steps=27 format=3 uid="uid://dypl75soflbh8"]
 
 [ext_resource type="Texture2D" uid="uid://di1i85lj3vsl4" path="res://assets/textures/pot.png" id="1_bls8m"]
 [ext_resource type="Script" uid="uid://b3enaxefcgu7x" path="res://scripts/cat_pot.gd" id="1_w6w6m"]
 [ext_resource type="Script" uid="uid://dbkh0nnilhyn3" path="res://scripts/cat_data.gd" id="2_4megu"]
 [ext_resource type="Texture2D" uid="uid://bk22hoi8w6r3f" path="res://assets/textures/palletes/green.png" id="2_ijak8"]
 [ext_resource type="FontFile" uid="uid://bksgsn2hpi6es" path="res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf" id="5_1b8ru"]
+[ext_resource type="AudioStream" uid="uid://ba8dftkb13jr5" path="res://assets/sfx/harvest.mp3" id="6_bebw4"]
+[ext_resource type="AudioStream" uid="uid://dmtgds5ntgv38" path="res://assets/sfx/buypot.mp3" id="6_ej3ei"]
 
 [sub_resource type="Resource" id="Resource_ijak8"]
 script = ExtResource("2_4megu")
@@ -130,6 +132,11 @@ bg_color = Color(1, 1, 1, 0.1882353)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b8ru"]
 bg_color = Color(1, 1, 1, 0.078431375)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bebw4"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("6_bebw4")
+
 [node name="CatPot" type="Area2D" node_paths=PackedStringArray("colliders") groups=["Pot"]]
 script = ExtResource("1_w6w6m")
 colliders = [NodePath("Harvest"), NodePath("StaticBody2D/Platform")]
@@ -212,4 +219,13 @@ text = "20k"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Buy"]
+stream = ExtResource("6_ej3ei")
+volume_db = 7.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_bebw4")
+
+[connection signal="harvested" from="." to="AudioStreamPlayer" method="play"]
 [connection signal="pressed" from="Buy/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Buy/Button" to="Buy/AudioStreamPlayer" method="play"]

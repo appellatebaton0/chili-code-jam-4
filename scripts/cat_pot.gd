@@ -1,5 +1,7 @@
 class_name CatPot extends Area2D
 
+signal harvested
+
 @export var bought := false
 @export var cost := 20
 
@@ -69,10 +71,13 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 			particles.emitting = true
 			
 			anim.play(str(growth_stage))
+			harvested.emit()
 
 func get_new_name() -> String:
 	return [
 		"Alex",
+		"Cheshire",
+		"Rook",
 		"Bailey",
 		"Charlie",
 		"Chris",
@@ -112,6 +117,8 @@ func get_new_name() -> String:
 		"Peanut",
 		"Pudding",
 		"Quinoa",
+		"Queen",
+		"King",
 		"Chicken",
 		"Porkchop",
 		"Potato",
@@ -119,6 +126,7 @@ func get_new_name() -> String:
 		"Ramen",
 		"Latte",
 		"Snickers",
+		"Night",
 		"Tofu",
 		"Waffles",
 		"S'mores",
