@@ -67,6 +67,8 @@ func _physics_process(delta: float) -> void:
 			
 			velocity.x = (-1 if facing_left else 1) * walk_speed
 			
+			# if current_yarn.linear_velocity.y <= 0.2 and abs(current_yarn.global_position.y - global_position.y) > 20: change_state(STATE.YARN)
+			
 			if data.mood >= 95 and state_time <= 0: change_state(STATE.IDLE)
 			
 	state_time = move_toward(state_time, 0, delta)

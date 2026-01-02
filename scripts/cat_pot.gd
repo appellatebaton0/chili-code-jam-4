@@ -32,8 +32,20 @@ func _ready() -> void:
 	material.palette = cat_seed.pallete
 
 func _on_new_day() -> void:
-	
 	if not bought: return
+	
+	if growth_stage == STAGES.RIPE:
+		# Make a new cat.
+			
+		var new = cat_seed.duplicate().create(get_parent())
+		new.global_position = global_position
+		new.data.name = get_new_name()
+		
+		growth_stage = 0 as STAGES
+		
+		particles.emitting = true
+		
+		anim.play(str(growth_stage))
 	
 	growth_progress += growth_per_day
 	

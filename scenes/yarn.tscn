@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cfm1shfemfawf" path="res://assets/textures/yarn.png" id="2_on054"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gs3jm"]
+friction = 0.3
 bounce = 0.3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8f0kc"]
