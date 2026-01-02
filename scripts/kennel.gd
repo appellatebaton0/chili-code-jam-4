@@ -16,5 +16,5 @@ func _mouse_exit() -> void:  mouse_over = false
 
 func _process(_delta: float) -> void:
 	for kennel in kennels:
-		kennel.position.y = lerp(kennel.position.y, -12.0 if mouse_over else 12.0, 0.2)
+		kennel.position.y = lerp(kennel.position.y, -12.0 if (mouse_over or Input.is_action_pressed("U")) else 12.0, 0.2)
 	

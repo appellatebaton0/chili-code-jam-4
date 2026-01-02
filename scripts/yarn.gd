@@ -18,7 +18,6 @@ func _physics_process(delta: float) -> void:
 			var dir = 1 if body.global_position.direction_to(global_position).x < 0 else 1
 			
 			if Mouse.holding != self:
-				print(Vector2(dir * mult, -mult * 1.1))
 				apply_impulse(Vector2(dir * mult, -mult * 1.1))
 			targeted_by.data.mood += 10 if Mouse.holding != self else 7
 			

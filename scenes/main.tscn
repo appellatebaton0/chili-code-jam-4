@@ -1,11 +1,10 @@
-[gd_scene load_steps=56 format=3 uid="uid://c3anty621fnsp"]
+[gd_scene load_steps=64 format=3 uid="uid://c3anty621fnsp"]
 
 [ext_resource type="Script" uid="uid://c1br7q0wcb3kd" path="res://scripts/camera.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://bwnufjnbnikh4" path="res://assets/textures/background.png" id="1_trceg"]
 [ext_resource type="Script" uid="uid://cdcn6er34elng" path="res://scripts/area_activator.gd" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://hc8lqi63vcnq" path="res://assets/textures/palletes/blue.png" id="4_2f3dj"]
 [ext_resource type="Script" uid="uid://d386c2mb6q48g" path="res://scripts/anim_button.gd" id="4_jyhfs"]
-[ext_resource type="Script" uid="uid://vrs1twpulcy0" path="res://addons/PaletteSwapShader/PaletteMaterial.gd" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://dbkh0nnilhyn3" path="res://scripts/cat_data.gd" id="5_yq6so"]
 [ext_resource type="Script" uid="uid://qr7ihr8cdrd8" path="res://scripts/next_day.gd" id="6_choun"]
 [ext_resource type="Script" uid="uid://bm6cn4kmt55bv" path="res://scripts/kennel.gd" id="6_eb6dy"]
@@ -31,10 +30,6 @@
 [ext_resource type="Texture2D" uid="uid://chjjs1iit53oe" path="res://assets/textures/start.png" id="17_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://gf71gxlcvi7q" path="res://scenes/cat.tscn" id="19_0ld40"]
 [ext_resource type="PackedScene" uid="uid://lgh83ho1pgk0" path="res://scenes/computer.tscn" id="20_gqmmt"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tefeu"]
-script = ExtResource("4_tbgi4")
-metadata/_custom_type_script = "uid://vrs1twpulcy0"
 
 [sub_resource type="Resource" id="Resource_dgi5k"]
 script = ExtResource("5_yq6so")
@@ -124,6 +119,46 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.5, 0.40083334, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv21b"]
+bg_color = Color(0.71127325, 0.5827589, 0.27619058, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.40083334, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tel4y"]
+bg_color = Color(0.71127325, 0.5827589, 0.27619058, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.40083334, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkpxi"]
+bg_color = Color(0.71127325, 0.5827589, 0.27619058, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.40083334, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5q0nq"]
+bg_color = Color(0.17599998, 0.44, 0.18039998, 0.7607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgi5k"]
+bg_color = Color(0, 0, 0, 0.42745098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jky"]
+bg_color = Color(0, 0, 0, 0.50980395)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmb1v"]
+bg_color = Color(0.06, 0.06, 0.06, 0.34509805)
+
+[sub_resource type="FontVariation" id="FontVariation_dgi5k"]
+base_font = ExtResource("11_jkv2x")
+spacing_bottom = 7
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_85g3d"]
 shader = ExtResource("7_tipki")
@@ -220,6 +255,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HowTo:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -162)]
+}
 
 [sub_resource type="Animation" id="Animation_tipki"]
 resource_name = "new_day"
@@ -313,9 +360,67 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_5q0nq"]
+resource_name = "game_to_how"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HowTo:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.49),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -162), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InputStopper:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_dgi5k"]
+resource_name = "how_to_game"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HowTo:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -162)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InputStopper:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tefeu"]
 _data = {
 &"RESET": SubResource("Animation_tbgi4"),
+&"game_to_how": SubResource("Animation_5q0nq"),
+&"how_to_game": SubResource("Animation_dgi5k"),
 &"new_day": SubResource("Animation_tipki"),
 &"start": SubResource("Animation_jyhfs")
 }
@@ -332,13 +437,6 @@ texture = ExtResource("1_trceg")
 z_index = -1
 texture_filter = 1
 position = Vector2(432, 81)
-texture = ExtResource("1_trceg")
-
-[node name="Sprite2D3" type="Sprite2D" parent="." groups=["Pane"]]
-z_index = -1
-texture_filter = 1
-material = SubResource("ShaderMaterial_tefeu")
-position = Vector2(720, 81)
 texture = ExtResource("1_trceg")
 
 [node name="CatPot" parent="." instance=ExtResource("6_o6xl0")]
@@ -441,7 +539,7 @@ cat_seed = SubResource("Resource_c6pm6")
 collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment"]
-polygon = PackedVector2Array(0, 162, 864, 162, 864, -155, 997, -155, 997, 258, -128, 258, -128, -235, 0, -235)
+polygon = PackedVector2Array(0, 162, 576, 162, 576, -662, 673, -586, 671, 258, -128, 258, -128, -617, 0, -717)
 
 [node name="Computer" parent="." instance=ExtResource("20_gqmmt")]
 position = Vector2(368, 122)
@@ -456,7 +554,7 @@ collision_mask = 2
 script = ExtResource("13_trceg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CatSaver3000"]
-polygon = PackedVector2Array(-153, 132, -131, 150, -196, 238, 799, 236, 715, 156, 739, 125, 991, 212, 931, 389, -412, 393, -402, 225)
+polygon = PackedVector2Array(-153, 132, -131, 150, -196, 238, 523, 237, 424, 154, 468, 111, 695, 232, 1045, 389, -412, 393, -402, 225)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(144, 81)
@@ -475,6 +573,7 @@ pitch_scale = 0.75
 position = Vector2(-139.5, 0)
 script = ExtResource("2_jyhfs")
 signal_name = "pane_left"
+input_name = "L"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/LeftArea"]
 shape = SubResource("RectangleShape2D_tbgi4")
@@ -483,6 +582,7 @@ shape = SubResource("RectangleShape2D_tbgi4")
 position = Vector2(140, 0)
 script = ExtResource("2_jyhfs")
 signal_name = "pane_right"
+input_name = "R"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/RightArea"]
 position = Vector2(-0.5, 0)
@@ -588,18 +688,18 @@ grow_vertical = 2
 mouse_filter = 2
 theme = SubResource("Theme_tipki")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
+[node name="HUD" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
 offset_right = 37.0
 offset_bottom = 13.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 
-[node name="TextureRect" type="Panel" parent="CanvasLayer/UI/MarginContainer"]
+[node name="TextureRect" type="Panel" parent="CanvasLayer/UI/HUD"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y6deb")
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/MarginContainer/TextureRect"]
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -616,9 +716,92 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_tipki")
 
-[node name="GotCoins" type="AudioStreamPlayer" parent="CanvasLayer/UI/MarginContainer/TextureRect/Label"]
+[node name="GotCoins" type="AudioStreamPlayer" parent="CanvasLayer/UI/HUD/TextureRect/Label"]
+
+[node name="Control" type="Control" parent="CanvasLayer/UI/HUD"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/HUD/Control"]
+layout_mode = 0
+offset_left = 263.0
+offset_top = -0.9999981
+offset_right = 300.0
+offset_bottom = 28.99999
+scale = Vector2(0.2, 0.2)
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fv21b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tel4y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qkpxi")
+text = "?"
+script = ExtResource("4_jyhfs")
+anim_name = "game_to_how"
+
+[node name="HowTo" type="MarginContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -162.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/HowTo"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5q0nq")
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/HowTo/Panel"]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 4.0
+offset_right = 291.3333
+offset_bottom = 31.0
+scale = Vector2(0.3, 0.3)
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_dgi5k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j8jky")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kmb1v")
+text = "X"
+script = ExtResource("4_jyhfs")
+anim_name = "how_to_game"
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HowTo/Panel"]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 5.0
+offset_right = 279.0
+offset_bottom = 26.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 22
+text = "HOW TO PLAY"
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/HowTo/Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 22.0
+offset_right = 633.99994
+offset_bottom = 301.99997
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/font = SubResource("FontVariation_dgi5k")
+theme_override_font_sizes/font_size = 15
+text = "- Buy pots to grow cats
+- Hover  over the sides of the screen to move panes.
+- Pots grow every day, move to the next day by clicking the clock.
+- Cats can be sold by dragging them into the kennel by the computer and clicking \"Sell\" if their mood/cleanliness are high enough.
+- Drag a cat into the bathtub to raise its cleanliness.
+- Cats will play with yarn balls to keep their mood up.
+- You can store cats in kennels by hovering over the bottom of the screen to pull up the kennels, and dragging a cat into one."
+autowrap_mode = 2
 
 [node name="DayPhaser" type="TextureRect" parent="CanvasLayer/UI"]
+visible = false
 material = SubResource("ShaderMaterial_85g3d")
 layout_mode = 1
 anchors_preset = 15

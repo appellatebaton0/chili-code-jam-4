@@ -43,8 +43,6 @@ func _on_new_day() -> void:
 		
 		growth_stage = 0 as STAGES
 		
-		particles.emitting = true
-		
 		anim.play(str(growth_stage))
 	
 	growth_progress += growth_per_day
