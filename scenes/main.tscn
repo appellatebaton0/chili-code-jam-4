@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c3anty621fnsp"]
+[gd_scene load_steps=39 format=3 uid="uid://c3anty621fnsp"]
 
 [ext_resource type="Script" uid="uid://c1br7q0wcb3kd" path="res://scripts/camera.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://bwnufjnbnikh4" path="res://assets/textures/background.png" id="1_trceg"]
@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://bksgsn2hpi6es" path="res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf" id="11_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://bp1x8bnr4yd44" path="res://assets/textures/clock.png" id="11_yc10j"]
 [ext_resource type="Script" uid="uid://b5cwrwo5lywb2" path="res://scripts/cat_saver.gd" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://cg4aj0wn6r3mh" path="res://scenes/yarn.tscn" id="14_jscy8"]
 [ext_resource type="AudioStream" uid="uid://ddksvdj1ttdxg" path="res://assets/sfx/daychange.mp3" id="15_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://chjjs1iit53oe" path="res://assets/textures/start.png" id="17_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://gf71gxlcvi7q" path="res://scenes/cat.tscn" id="19_0ld40"]
@@ -449,7 +450,11 @@ text = "-> Sleep  "
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Yarn" parent="." instance=ExtResource("14_jscy8")]
+position = Vector2(94, 129)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -604,24 +609,31 @@ render_target_update_mode = 0
 
 [node name="Cat" parent="CanvasLayer/UI/StartScreen/SubViewportContainer/SubViewport" instance=ExtResource("19_0ld40")]
 position = Vector2(26, 18)
+can_play = false
 
 [node name="Cat2" parent="CanvasLayer/UI/StartScreen/SubViewportContainer/SubViewport" instance=ExtResource("19_0ld40")]
 position = Vector2(57, 18)
+can_play = false
 
 [node name="Cat3" parent="CanvasLayer/UI/StartScreen/SubViewportContainer/SubViewport" instance=ExtResource("19_0ld40")]
 position = Vector2(87, 18)
+can_play = false
 
 [node name="Cat4" parent="CanvasLayer/UI/StartScreen/SubViewportContainer/SubViewport" instance=ExtResource("19_0ld40")]
 position = Vector2(148, 18)
+can_play = false
 
 [node name="Cat5" parent="CanvasLayer/UI/StartScreen/SubViewportContainer/SubViewport" instance=ExtResource("19_0ld40")]
 position = Vector2(222, 18)
+can_play = false
 
 [node name="Cat6" parent="CanvasLayer/UI/StartScreen/SubViewportContainer/SubViewport" instance=ExtResource("19_0ld40")]
 position = Vector2(195, 18)
+can_play = false
 
 [node name="Cat7" parent="CanvasLayer/UI/StartScreen/SubViewportContainer/SubViewport" instance=ExtResource("19_0ld40")]
 position = Vector2(128, 18)
+can_play = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer/UI/StartScreen/SubViewportContainer/SubViewport"]
 

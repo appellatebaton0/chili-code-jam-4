@@ -10,7 +10,7 @@ class_name CatData extends Resource
 var cleanliness := 70
 @export var dirty_speed := 1
 
-var mood := 100
+var mood := 50
 @export var sad_speed := 1
 
 func _init() -> void:
