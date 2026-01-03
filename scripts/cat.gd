@@ -78,7 +78,8 @@ func _physics_process(delta: float) -> void:
 	
 	if state_time <= 0 and data.mood < 90 and can_play and state == STATE.IDLE: change_state(STATE.YARN)
 	
-	if randf() >= 0.98: data.mood -= 1
+	if randf() >= 0.98: data.change_mood(-1)
+	if randf() >= 0.99: data.change_cleanliness(-1)
 	
 	match state:
 		STATE.IDLE:

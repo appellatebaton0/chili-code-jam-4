@@ -1,6 +1,7 @@
 class_name CatPot extends Area2D
 
 signal harvested
+signal been_bought
 
 @export var bought := false
 @export var cost := 20
@@ -189,6 +190,8 @@ func _on_button_pressed() -> void: if Global.coins >= cost:
 	
 	for pot in get_tree().get_nodes_in_group("Pot"): if pot is CatPot:
 		pot._update_cost_to(int(cost * 1.1))
+	
+	been_bought.emit()
 
 func _update_cost_to(amount:int):
 	

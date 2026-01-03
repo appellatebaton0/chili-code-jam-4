@@ -1,6 +1,7 @@
 class_name KennelCell extends Area2D
 
 @onready var anim := $AnimatedSprite2D
+@onready var main := get_tree().get_first_node_in_group("Main")
 
 @export var held:CatData
 
@@ -10,7 +11,7 @@ func _mouse_exit() -> void:  mouse_over = false
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton: if event.pressed and !Mouse.holding and held:
-		var new = held.create(get_parent().get_parent())
+		var new = held.create(main)
 
 		Mouse.pick_up(new)
 		new.state = new.STATE.HELD

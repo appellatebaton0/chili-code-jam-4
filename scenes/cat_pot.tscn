@@ -226,6 +226,6 @@ volume_db = 7.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_bebw4")
 
+[connection signal="been_bought" from="." to="Buy/AudioStreamPlayer" method="play"]
 [connection signal="harvested" from="." to="AudioStreamPlayer" method="play"]
 [connection signal="pressed" from="Buy/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Buy/Button" to="Buy/AudioStreamPlayer" method="play"]

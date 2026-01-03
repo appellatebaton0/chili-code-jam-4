@@ -11,8 +11,16 @@ func get_kennels() -> Array[KennelCell]:
 
 var mouse_over := false
 
-func _mouse_enter() -> void: mouse_over = true
-func _mouse_exit() -> void:  mouse_over = false
+func _mouse_enter() -> void: 
+	mouse_over = true
+	
+	$Up.disabled = false
+	$Down.disabled = true
+func _mouse_exit() -> void:  
+	mouse_over = false
+	
+	$Up.disabled = true
+	$Down.disabled = false
 
 func _process(_delta: float) -> void:
 	for kennel in kennels:
